@@ -2,6 +2,7 @@ import { SyntheticEvent, useState } from "react";
 import Cookies from "universal-cookie";
 import Alert from "../components/Alert";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 	const [target, setTarget] = useState("");
@@ -11,6 +12,8 @@ const Login = () => {
 	const [showError, setShowError] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [loggingIn, setLoggingIn] = useState(true);
+
+	const navigate = useNavigate();
 
 	const checkFields = (): boolean => {
 		if (target === "") {
@@ -55,8 +58,7 @@ const Login = () => {
 						const cookies = new Cookies();
 						cookies.set("token", data["token"]);
 
-						setShowError(false);
-						setLoading(false);
+						navigate("/dashboard", { replace: true });
 					} else {
 						setError(<p>Invalid Credentials</p>);
 						setShowError(true);
