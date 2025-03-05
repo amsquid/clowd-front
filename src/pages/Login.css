@@ -1,0 +1,43 @@
+body {
+	display: grid;
+
+	--width: 35%;
+
+	@media (width <= 600px) {
+		--width: 5%;
+	}
+
+	margin-left: var(--width);
+	margin-right: var(--width);
+	margin-top: 15%;
+}
+
+button, .alert {
+	margin-top: 2%;
+}
+
+.auth-options {
+	display: flex;
+}
+
+.auth-options > * {
+	flex: 1;
+}
+
+.auth-options > *:hover {
+	cursor: pointer;
+}
+
+.auth-chosen {
+	color: blue;
+	transition: 0.2s;
+}
+
+.auth-notchosen {
+	color: black;
+	transition: 0.2s;
+}
+
+p {
+	margin-bottom: 0;
+}
