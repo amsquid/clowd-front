@@ -1,7 +1,6 @@
 import { SyntheticEvent, useState } from "react";
 import Cookies from "universal-cookie";
 import Alert from "../components/Alert";
-import "./Login.css";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -129,7 +128,7 @@ const Login = () => {
 	};
 
 	return (
-		<div>
+		<div className="login">
 			<div className="auth-options">
 				<h3
 					className={loggingIn ? "auth-chosen" : "auth-notchosen"}
