@@ -9,21 +9,34 @@ import {
 	getByRole,
 } from "@testing-library/react";
 import Login from "../src/pages/Login";
+import { BrowserRouter } from "react-router-dom";
 
 describe("Login", () => {
 	it("renders", () => {
-		render(<Login />);
+		render(
+			<BrowserRouter>
+				<Login />
+			</BrowserRouter>
+		);
 		expect(true).toBe(true);
 	});
 
 	it("shows login button correctly", () => {
-		render(<Login />);
+		render(
+			<BrowserRouter>
+				<Login />
+			</BrowserRouter>
+		);
 		const button = screen.getByRole("button", { name: "Login" });
 		expect(true).toBe(true);
 	});
 
 	it("shows register button correctly", () => {
-		render(<Login />);
+		render(
+			<BrowserRouter>
+				<Login />
+			</BrowserRouter>
+		);
 		const button = screen.getByRole("button", { name: "Login" });
 		const register = screen.getByText("Register");
 		fireEvent.click(register);
