@@ -1,9 +1,10 @@
 interface Props {
 	handleClick(item: string): void;
 	navBarItems: string[];
+	selectedItem: string;
 }
 
-const Navbar = ({ handleClick, navBarItems }: Props) => {
+const Navbar = ({ handleClick, navBarItems, selectedItem }: Props) => {
 	return (
 		<div className="navbar navbar-expand-lg bg-body-tertiary">
 			<div className="container-fluid">
@@ -11,16 +12,17 @@ const Navbar = ({ handleClick, navBarItems }: Props) => {
 				<div className="collapse navbar-collapse" id="navbarNav">
 					<ul className="navbar-nav">
 						{navBarItems.map((value: string, idx: number) => (
-							<li className="nav-item" key={idx} aria-label={value}>
-								<a
-									className="nav-link active"
-									aria-current="page"
-									href="#"
-									onClick={() => handleClick(value)}
-								>
-									{value}
-								</a>
-							</li>
+							<a
+								className={
+									"nav-link " + (selectedItem == value ? "active" : "")
+								}
+								aria-label={value}
+								href="#"
+								key={idx}
+								onClick={() => handleClick(value)}
+							>
+								{value}
+							</a>
 						))}
 					</ul>
 				</div>
