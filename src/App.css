@@ -3,14 +3,19 @@
 	display: grid;
 
 	--width: 35%;
+	--height: 15%;
 
 	@media (width <= 600px) {
 		--width: 5%;
 	}
 
+	@media (height <= 500px) {
+		--height: 5%;
+	}
+
 	margin-left: var(--width);
 	margin-right: var(--width);
-	margin-top: 15%;
+	margin-top: var(--height);
 
 	text-align: center;
 }
@@ -32,7 +37,7 @@ button, .alert {
 }
 
 .auth-chosen {
-	color: blue;
+	color: rgb(83, 129, 226);
 	transition: 0.2s;
 }
 
@@ -43,4 +48,12 @@ button, .alert {
 
 p {
 	margin-bottom: 0;
+}
+
+.dashboard {
+	font-size: 18px;
+}
+
+.files {
+	margin: 12px;
 }
