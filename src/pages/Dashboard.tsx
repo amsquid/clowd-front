@@ -1,5 +1,9 @@
-import { useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import TextViewer from "../components/TextViewer";
+import { useNavigate } from "react-router-dom";
+import User from "../User";
+import FileExplorer from "../components/FileExplorer";
 
 enum Menus {
 	FILE_EXPLORER,
@@ -11,6 +15,9 @@ const Dashboard = () => {
 
 	const menus = ["File Explorer", "Text Viewer"];
 
+	const navigate = useNavigate();
+	const user: User = User.getInstance();
+
 	const menuToString = (menuItem: Menus): string => {
 		switch (menuItem) {
 			case Menus.FILE_EXPLORER:
@@ -19,6 +26,15 @@ const Dashboard = () => {
 				return "Text Viewer";
 			default:
 				return "";
+		}
+	};
+
+	const getActiveMenu = (): ReactNode => {
+		switch (menu) {
+			case Menus.FILE_EXPLORER:
+				return <FileExplorer />;
+			case Menus.TEXT_VIEWER:
+				return <TextViewer />;
 		}
 	};
 
@@ -34,13 +50,18 @@ const Dashboard = () => {
 		}
 	};
 
+	useEffect(() => {
+		if (user.target == "") navigate("/");
+	}, []);
+
 	return (
-		<div>
+		<div className="dashboard">
 			<Navbar
 				handleClick={handleClick}
 				selectedItem={menuToString(menu)}
 				navBarItems={menus}
 			/>
+			{getActiveMenu()}
 		</div>
 	);
 };
