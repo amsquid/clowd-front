@@ -2,6 +2,7 @@ import { SyntheticEvent, useState } from "react";
 import Cookies from "universal-cookie";
 import Alert from "../components/Alert";
 import { useNavigate } from "react-router-dom";
+import User from "../User";
 
 const Login = () => {
 	const [target, setTarget] = useState("");
@@ -13,6 +14,7 @@ const Login = () => {
 	const [loggingIn, setLoggingIn] = useState(true);
 
 	const navigate = useNavigate();
+	const user: User = User.getInstance();
 
 	const checkFields = (): boolean => {
 		if (target === "") {
@@ -56,6 +58,8 @@ const Login = () => {
 					if (loggedin) {
 						const cookies = new Cookies();
 						cookies.set("token", data["token"]);
+
+						user.setupUser(username, data["token"], target);
 
 						navigate("/dashboard", { replace: true });
 					} else {
