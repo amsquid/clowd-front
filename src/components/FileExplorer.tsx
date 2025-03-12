@@ -1,10 +1,8 @@
-import User from "../User";
+interface Props {
+	ip: string;
+}
 
-const FileExplorer = () => {
-	const user: User = User.getInstance();
-
-	console.log(user.target);
-
+const FileExplorer = ({ ip }: Props) => {
 	return (
 		<div className="files">
 			<ul className="list-group">
