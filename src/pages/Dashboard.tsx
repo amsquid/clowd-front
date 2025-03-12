@@ -2,7 +2,6 @@ import { ReactNode, useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import TextViewer from "../components/TextViewer";
 import { useNavigate } from "react-router-dom";
-import User from "../User";
 import FileExplorer from "../components/FileExplorer";
 
 enum Menus {
@@ -16,7 +15,9 @@ const Dashboard = () => {
 	const menus = ["File Explorer", "Text Viewer"];
 
 	const navigate = useNavigate();
-	const user: User = User.getInstance();
+
+	const searchParams = new URLSearchParams(document.location.search);
+	const ip: string = searchParams.get("target") || "";
 
 	const menuToString = (menuItem: Menus): string => {
 		switch (menuItem) {
@@ -32,7 +33,7 @@ const Dashboard = () => {
 	const getActiveMenu = (): ReactNode => {
 		switch (menu) {
 			case Menus.FILE_EXPLORER:
-				return <FileExplorer />;
+				return <FileExplorer ip={ip} />;
 			case Menus.TEXT_VIEWER:
 				return <TextViewer />;
 		}
@@ -51,7 +52,7 @@ const Dashboard = () => {
 	};
 
 	useEffect(() => {
-		if (user.target == "") navigate("/");
+		if (ip === "") navigate("/");
 	}, []);
 
 	return (

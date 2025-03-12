@@ -59,9 +59,9 @@ const Login = () => {
 						const cookies = new Cookies();
 						cookies.set("token", data["token"]);
 
-						user.setupUser(username, data["token"], target);
+						user.setupUser(username, data["token"]);
 
-						navigate("/dashboard", { replace: true });
+						navigate("/dashboard/?target=" + target, { replace: true });
 					} else {
 						setError(<p>Invalid Credentials</p>);
 						setShowError(true);
