@@ -3,6 +3,7 @@ interface Props {
 }
 
 const FileExplorer = ({ ip }: Props) => {
+	ip;
 	return (
 		<div className="files">
 			<ul className="list-group">
