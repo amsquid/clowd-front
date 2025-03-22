@@ -3,8 +3,16 @@ import "./App.css";
 import Login from "./pages/Login";
 import Page404 from "./pages/Page404";
 import Dashboard from "./pages/Dashboard";
+import User from "./User";
+import Cookies from "universal-cookie";
 
 function App() {
+	const cookies: Cookies = new Cookies();
+	const user: User = User.getInstance();
+
+	user.username = cookies.get("username");
+	user.token = cookies.get("token");
+
 	return (
 		<div>
 			<BrowserRouter>
