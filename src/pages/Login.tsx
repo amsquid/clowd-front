@@ -57,6 +57,7 @@ const Login = () => {
 
 					if (loggedin) {
 						const cookies = new Cookies();
+						cookies.set("username", username);
 						cookies.set("token", data["token"]);
 
 						user.setupUser(username, data["token"]);
