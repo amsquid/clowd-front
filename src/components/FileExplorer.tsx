@@ -4,9 +4,10 @@ import User from "../User";
 
 interface Props {
 	ip: string;
+	onClickItem(filename: string): void;
 }
 
-const FileExplorer = ({ ip }: Props) => {
+const FileExplorer = ({ ip, onClickItem }: Props) => {
 	const [files, setFiles] = useState([]);
 	const [loading, setLoading] = useState(true);
 
@@ -39,7 +40,11 @@ const FileExplorer = ({ ip }: Props) => {
 			{!loading && (
 				<ul className="list-group">
 					{files.map((file: string, idx: number) => (
-						<li className="list-group-item" key={idx}>
+						<li
+							className="list-group-item"
+							key={idx}
+							onClick={() => onClickItem(file)}
+						>
 							{file}
 						</li>
 					))}

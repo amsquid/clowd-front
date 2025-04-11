@@ -11,6 +11,7 @@ enum Menus {
 
 const Dashboard = () => {
 	const [menu, setMenu] = useState(Menus.FILE_EXPLORER);
+	const [activeFile, setActiveFile] = useState("");
 
 	const menus = ["File Explorer", "Text Viewer"];
 
@@ -18,6 +19,11 @@ const Dashboard = () => {
 
 	const searchParams = new URLSearchParams(document.location.search);
 	const ip: string = searchParams.get("target") || "";
+
+	const onClickItem = (filename: string) => {
+		setActiveFile(filename);
+		setMenu(Menus.TEXT_VIEWER);
+	};
 
 	const menuToString = (menuItem: Menus): string => {
 		switch (menuItem) {
@@ -33,7 +39,7 @@ const Dashboard = () => {
 	const getActiveMenu = (): ReactNode => {
 		switch (menu) {
 			case Menus.FILE_EXPLORER:
-				return <FileExplorer ip={ip} />;
+				return <FileExplorer ip={ip} onClickItem={onClickItem} />;
 			case Menus.TEXT_VIEWER:
 				return <TextViewer />;
 		}

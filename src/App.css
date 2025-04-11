@@ -57,3 +57,7 @@ p {
 .files {
 	margin: 12px;
 }
+
+.list-group-item {
+	cursor: pointer;
+}
